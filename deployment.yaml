@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: ecom-ms-products
+  name: ecom-ms-products
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: ecom-ms-products
+  template:
+    metadata:
+      labels:
+        run: ecom-ms-products
+    spec:
+      containers:
+      - image: gcr.io/[PROJECT-ID]/ecom-ms-products:latest #Replace [PROJECT-ID] accordingly
+        name: ecom-ms-products
+        ports:
+        - containerPort: 8080
