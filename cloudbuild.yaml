@@ -3,7 +3,26 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/ecom-ms-products', '.']
 
+# Step 3
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'k8s/']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-ms-app'
+# Step 4
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set', 
+   'image', 
+   'deployment', 
+   'ecom-ms-products', 
+   'ecom-ms-products=gcr.io/$PROJECT_ID/ecom-ms-products'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-ms-app'
+  # Push the image to Google Container Registry with the latest tag
 
 images: [
-   'gcr.io/$PROJECT_ID/ecom-ms-products
+   'gcr.io/$PROJECT_ID/ecom-ms-products'
   ]
