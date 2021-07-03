@@ -1,12 +1,9 @@
 steps:
-# Step 1
-- name: 'gcr.io/cloud-builders/docker' 
-  entrypoint: 'bash'
-  args: [
-   '-c', 
-   'docker pull gcr.io/$PROJECT_ID/ecom-ms-products:$COMMIT_SHA || exit 0'
-  ]
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/ecom-ms-products', '.']
+
 
 images: [
-   'gcr.io/$PROJECT_ID/ecom-ms-products:$COMMIT_SHA'
+   'gcr.io/$PROJECT_ID/ecom-ms-products
   ]
