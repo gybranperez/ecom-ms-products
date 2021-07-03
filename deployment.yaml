@@ -15,7 +15,7 @@ spec:
         run: ecom-ms-products
     spec:
       containers:
-      - image: gcr.io/[PROJECT-ID]/ecom-ms-products:latest #Replace [PROJECT-ID] accordingly
+      - image: gcr.io/eminent-range-308520/ecom-ms-products:latest #Replace [PROJECT-ID] accordingly
         name: ecom-ms-products
         ports:
         - containerPort: 8080

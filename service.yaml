@@ -7,6 +7,6 @@ spec:
      run: ecom-ms-products
   ports:
   - protocol: TCP
-    port: 3002
+    port: 3602
     targetPort: 8080
   type: LoadBalancer
