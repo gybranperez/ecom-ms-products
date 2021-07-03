@@ -4,9 +4,9 @@ steps:
   entrypoint: 'bash'
   args: [
    '-c', 
-   'docker pull gcr.io/$PROJECT_ID/ecom-ms-products:latest || exit 0'
+   'docker pull gcr.io/$PROJECT_ID/ecom-ms-products:$COMMIT_SHA || exit 0'
   ]
 
 images: [
-   'gcr.io/$PROJECT_ID/ecom-ms-products:latest'
+   'gcr.io/$PROJECT_ID/ecom-ms-products:$COMMIT_SHA'
   ]
