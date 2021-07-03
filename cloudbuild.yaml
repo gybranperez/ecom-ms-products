@@ -1,18 +1,27 @@
 steps:
-# Build the container image
+
+  # Construye la imagen y la guarda en gcr
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/ecom-ms-products', '.']
 
-# Step 2
+
+  # Jalamos la imagen del registro de contenedores de google
+- name: 'gcr.io/cloud-builders/docker' 
+  entrypoint: 'bash'
+  args: ['-c', 'docker pull gcr.io/$PROJECT_ID/ecom-ms-products || exit 0'
+  ]
+
+  
+# Aplicamos service y deployment yaml de la carpeta k8s
 - name: 'gcr.io/cloud-builders/kubectl'
-  # apply -f k8s/
   args: ['apply', '-f', 'k8s/']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=gke-ms-app'
-# Step 3
+
+
+# Desplegamos imagen
 - name: 'gcr.io/cloud-builders/kubectl'
-  #kubectl set image deployment ecom-ms-products ecom-ms-products=gcr.io/$PROJECT_ID/ecom-ms-products
   args: [
    'set', 
    'image', 
