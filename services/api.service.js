@@ -19,6 +19,7 @@ module.exports = {
 	name: "api",
 	mixins: [ApiGateway],
 	settings: {
+		//port: process.env.PORT || 3602,
 		port: process.env.PORT || 3602,
 		// Global CORS settings for all routes
         cors: {
